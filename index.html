@@ -1376,25 +1376,26 @@
             <!-- Tab panes -->
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="contact-us">Contact-us
-                <form method="post" data-aos="fade">
+                <form id="contract-from" method="post" action="http://localhost:3000/api/contract" data-aos="fade">
+                  <!--รอใส่ target และ id -->
                   <div class="form-group row">
                     <div class="col-md-6 mb-3 mb-lg-0">
-                      <input type="text" class="form-control" placeholder="First name">
+                      <input type="text" id="fname" name="fname" class="form-control" placeholder="First name">
                     </div>
                     <div class="col-md-6">
-                      <input type="text" class="form-control" placeholder="Last name">
+                      <input type="text" id="lname" name="lname" class="form-control" placeholder="Last name">
                     </div>
                   </div>
 
                   <div class="form-group row">
                     <div class="col-md-12">
-                      <input type="email" class="form-control" placeholder="Email">
+                      <input type="email" id="email" name="email" class="form-control" placeholder="Email">
                     </div>
                   </div>
 
                   <div class="form-group row">
                     <div class="col-md-12">
-                      <select id="subject-list" class="form-control" form="form-control">
+                      <select id="subjec" name="subject" class="form-control" form="form-control">
                         <option value="">Subject</option>
                       </select>
                     </div>
@@ -1402,7 +1403,7 @@
 
                   <div class="form-group row">
                     <div class="col-md-12">
-                      <textarea class="form-control" id="" cols="30" rows="10"
+                      <textarea class="form-control" id="message" name="message" cols="30" rows="10"
                         placeholder="Write your message here."></textarea>
                     </div>
                   </div>
@@ -1411,8 +1412,10 @@
                     <div class="col-md-6">
 
                       <input type="submit" class="btn btn-primary py-3 px-5 btn-block" value="Send Message">
+                      <!--onclick="contractSubmit()"-->
                     </div>
                   </div>
+                  <!-- เราเพิ่มแต่ละช่องให้ใช้โดยเราเพิ่ม id และ name  และส่วนของ "submit" onclick="contractSubmit() -->
 
                 </form>
               </div>
@@ -1633,7 +1636,6 @@
       document.querySelector('#nav-sunday .row').children[1].innerHTML = html_text;
     }
 
-
     function loadSubjext(url) {
       fetch(url)
         .then(response => response.json())
@@ -1656,10 +1658,19 @@
 
 
 
-
     window.onload = function () {
       const contact = document.getElementById("contact-head");
       contact.innerHTML = "New Man";
+
+      loadDoc("./xml/04_class_sunday.xml", classXML);
+      loadDoc("./json/04_class_sunday.json", classJSON);
+      // loadSubjext("./json/04_contact_subject.json");
+      loadSubject('http://localhost:300/api/subject');
+
+
+      function contractSubmit() {
+        document.getElementById('contract-from').submit();
+      }
     }
   </script>
 </body>
