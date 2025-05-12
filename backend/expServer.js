@@ -12,9 +12,9 @@ app.use(bodyParser.json());       // มันจะเฟดลิงต์ห�
 app.use(express.urlencoded({ extended: true }))
 
 app.use('/api/subject', require('./routes/subject.js'));
-app.use('/api/contract', require('./routes/subject.js'));
+app.use('/api/contract', require('./routes/contract.js'));
 
 
 app.listen(PORT, () => {
-    console.log(`Server running AT : http://localhost:${PORT}/api/subject`);  // OR + PORT
+    console.log(`Server running AT : http://localhost:${PORT}/`);  // OR + PORT
 });
