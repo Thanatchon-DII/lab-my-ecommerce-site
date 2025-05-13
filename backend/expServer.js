@@ -13,8 +13,9 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use('/api/subject', require('./routes/subject.js'));
 app.use('/api/contract', require('./routes/contract.js'));
+app.use('/api/subscribe', require('./routes/subscribe.js'));
 
 
 app.listen(PORT, () => {
-    console.log(`Server running AT : http://localhost:${PORT}/`);  // OR + PORT
+    console.log(`Server running AT : http://localhost:${PORT}/api/subject`);  // OR + PORT
 });

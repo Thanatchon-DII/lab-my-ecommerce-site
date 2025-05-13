@@ -1511,9 +1511,10 @@
             <h3 class="text-white">Subscribe</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus, odio beatae accusantium.
             </p>
-            <form action="#">
+            <form id="subscribe-form" action="#">
               <div class="d-flex mb-5">
-                <input type="text" class="form-control rounded-0" placeholder="Email">
+                <input id="subscribe-email" type="email" name="email" class="form-control rounded-0"
+                  placeholder="Email">
                 <input type="submit" class="btn btn-primary rounded-0" value="Subscribe">
               </div>
             </form>
@@ -1704,6 +1705,26 @@
       let response = ajax(config);
       console.log(response);
     }
+
+    document.getElementById("subscribe-form").addEventListener("submit", async (e) => {
+      e.preventDefault();     // Not Refresh Page  เพราะ action มัน = # จะได้ไม่ขึ้นหน้าใหม่
+      let subscribeData = {
+        email: document.getElementById("subscribe-email").value  //subscribe-email  แก้ตรงไหน
+      }
+
+      const response = await fetch('http://localhost:3000/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'   // จารย์เอาแค่ ตัวนี้
+        },
+        body: JSON.stringify(subscribeData)
+      });
+      console.log(response);
+      let result = await response.json();
+      console.log(result.message);
+
+    });
+
   </script>
 </body>
 
