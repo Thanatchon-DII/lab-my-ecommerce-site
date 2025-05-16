@@ -15,7 +15,11 @@ app.use('/api/subject', require('./routes/subject.js'));
 app.use('/api/contract', require('./routes/contract.js'));
 app.use('/api/subscribe', require('./routes/subscribe.js'));
 
+app.use('/api/users', require('./routes/users.js'));
 
 app.listen(PORT, () => {
     console.log(`Server running AT : http://localhost:${PORT}/api/subject`);  // OR + PORT
 });
+
+
+// ตอนนี้เราเป็น API Gate Way 
